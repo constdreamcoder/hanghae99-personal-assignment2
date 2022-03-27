@@ -95,7 +95,8 @@ const AddCard = (props) => {
         <Rectify
           type="submit"
           onClick={() => {
-            // history.push("/");
+            dispatch(createDictionary(inputs));
+            history.push("/");
           }}
         >
           추가하기
