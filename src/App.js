@@ -9,10 +9,14 @@ import styled from "styled-components";
 // packages
 import { Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { db } from "./firebase";
+import React from "react";
 
 function App() {
   const history = useHistory();
-
+  React.useEffect(() => {
+    console.log(db);
+  }, []);
   return (
     <div className="App">
       <Header>
