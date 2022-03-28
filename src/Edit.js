@@ -6,20 +6,34 @@ import { useState } from "react";
 import styled from "styled-components";
 
 // packages
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Edit = (props) => {
   const history = useHistory();
+  const index = useParams().index;
+
+  console.log(index);
+
+  const redux_data = useSelector((state) => state.dictionary.list);
+  const redux_data2 = useSelector((state) => state);
+  const clickedCard = redux_data.filter(
+    (ele, idx) => idx === parseInt(index)
+  )[0];
+  console.log(redux_data);
+  console.log(clickedCard);
+  console.log(redux_data2);
+
   const [inputs, setInputs] = useState({});
 
-  const handleChange = (event) => {
-    const word = event.target.word;
-    const pinyin = event.target.pinyin;
-    const meaning = event.target.meaning;
-    const example = event.target.example;
-    const example_translation = event.target.example_translation;
-    // setInputs(values => ({...values, [name]: value}))
-  };
+  // const handleChange = (event) => {
+  //   const word = event.target.word;
+  //   const pinyin = event.target.pinyin;
+  //   const meaning = event.target.meaning;
+  //   const example = event.target.example;
+  //   const example_translation = event.target.example_translation;
+  //   // setInputs(values => ({...values, [name]: value}))
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,8 +50,9 @@ const Edit = (props) => {
             type="text"
             name="word"
             id="input-word"
-            values={inputs.word}
-            onChange={handleChange}
+            defaultValue={clickedCard.word}
+            // placeholder={clickedCard.word}
+            // onChange={handleChange}
           />
         </Input>
         <Input>
@@ -46,8 +61,9 @@ const Edit = (props) => {
             type="text"
             name="pinyin"
             id="input-pinyin"
-            values="#"
-            onChange={handleChange}
+            defaultValue={clickedCard.pinyin}
+            // placeholder={clickedCard.pinyin}
+            // onChange={handleChange}
           />
         </Input>
         <Input>
@@ -56,8 +72,9 @@ const Edit = (props) => {
             type="text"
             name="meaning"
             id="input-meaning"
-            values="#"
-            onChange={handleChange}
+            defaultValue={clickedCard.meaning}
+            // placeholder={clickedCard.meaning}
+            // onChange={handleChange}
           />
         </Input>
         <Input>
@@ -66,8 +83,9 @@ const Edit = (props) => {
             type="text"
             name="example"
             id="input-example"
-            values="#"
-            onChange={handleChange}
+            defaultValue={clickedCard.example}
+            // placeholder={clickedCard.example}
+            // onChange={handleChange}
           />
         </Input>
         <Input>
@@ -76,8 +94,9 @@ const Edit = (props) => {
             type="text"
             name="example_translation"
             id="input-example_translation"
-            values="#"
-            onChange={handleChange}
+            defaultValue={clickedCard.example_translation}
+            // placeholder={clickedCard.example_translation}
+            // onChange={handleChange}
           />
         </Input>
         <Rectify

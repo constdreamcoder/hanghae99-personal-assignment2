@@ -1,6 +1,6 @@
 // Components
 import Card from "./Card";
-// import Edit from "./Edit";
+import Edit from "./Edit";
 import AddCard from "./AddCard";
 
 // style
@@ -34,9 +34,9 @@ function App() {
             <Card />
           </CardSection>
         </Route>
-        {/* <Route path="/edit" exact>
+        <Route path="/edit/:index" exact>
           <Edit />
-        </Route> */}
+        </Route>
         <Route path="/add" exact>
           <AddCard />
         </Route>

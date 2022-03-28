@@ -23,7 +23,7 @@ const Card = (props) => {
               <div>
                 <button
                   onClick={() => {
-                    history.push("/edit");
+                    history.push("/edit/" + idx);
                   }}
                 >
                   수정
