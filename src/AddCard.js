@@ -8,7 +8,16 @@ import styled from "styled-components";
 // packages
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createDictionary } from "./redux/modules/dictionary";
+import { addDictionaryFB } from "./redux/modules/dictionary";
+import {
+  collection,
+  doc,
+  getDocs,
+  getDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
 const AddCard = (props) => {
   const history = useHistory();
@@ -95,7 +104,7 @@ const AddCard = (props) => {
         <Rectify
           type="submit"
           onClick={() => {
-            dispatch(createDictionary(inputs));
+            dispatch(addDictionaryFB(inputs));
             history.push("/");
           }}
         >

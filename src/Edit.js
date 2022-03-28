@@ -7,33 +7,41 @@ import styled from "styled-components";
 
 // packages
 import { useHistory, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateDictionaryFB } from "./redux/modules/dictionary";
 
 const Edit = (props) => {
   const history = useHistory();
-  const index = useParams().index;
+  const id = useParams().id;
 
-  console.log(index);
+  // console.log(id);
 
   const redux_data = useSelector((state) => state.dictionary.list);
-  const redux_data2 = useSelector((state) => state);
-  const clickedCard = redux_data.filter(
-    (ele, idx) => idx === parseInt(index)
-  )[0];
-  console.log(redux_data);
-  console.log(clickedCard);
-  console.log(redux_data2);
+  const clickedCard = redux_data.filter((ele) => ele.id === id)[0];
+  // console.log(redux_data);
+  // console.log(clickedCard);
 
-  const [inputs, setInputs] = useState({});
+  const dispatch = useDispatch();
 
-  // const handleChange = (event) => {
-  //   const word = event.target.word;
-  //   const pinyin = event.target.pinyin;
-  //   const meaning = event.target.meaning;
-  //   const example = event.target.example;
-  //   const example_translation = event.target.example_translation;
-  //   // setInputs(values => ({...values, [name]: value}))
-  // };
+  const [inputs, setInputs] = useState({
+    id: clickedCard.id,
+    word: clickedCard.word,
+    pinyin: clickedCard.pinyin,
+    meaning: clickedCard.meaning,
+    example: clickedCard.example,
+    example_translation: clickedCard.example_translation,
+  });
+
+  // 비구조 할당을 통해 값 추출
+  const { word, pinyin, meaning, example, example_translation } = inputs;
+
+  const handleChange = (event) => {
+    const { name, value } = event.target; // 태그 요소인 name값과 value 값을 받는다.
+    setInputs({
+      ...inputs, // spread - 리액트의 불변성을 지키기 위해 새로운 객체를 만들어 거기에 변화를 준다.
+      [name]: value, // name 키를 가진 값을 value로 설정
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,9 +58,9 @@ const Edit = (props) => {
             type="text"
             name="word"
             id="input-word"
-            defaultValue={clickedCard.word}
-            // placeholder={clickedCard.word}
-            // onChange={handleChange}
+            // defaultValue={clickedCard.word}
+            value={inputs.word}
+            onChange={handleChange}
           />
         </Input>
         <Input>
@@ -61,9 +69,9 @@ const Edit = (props) => {
             type="text"
             name="pinyin"
             id="input-pinyin"
-            defaultValue={clickedCard.pinyin}
-            // placeholder={clickedCard.pinyin}
-            // onChange={handleChange}
+            // defaultValue={clickedCard.pinyin}
+            value={inputs.pinyin}
+            onChange={handleChange}
           />
         </Input>
         <Input>
@@ -72,9 +80,9 @@ const Edit = (props) => {
             type="text"
             name="meaning"
             id="input-meaning"
-            defaultValue={clickedCard.meaning}
-            // placeholder={clickedCard.meaning}
-            // onChange={handleChange}
+            // defaultValue={clickedCard.meaning}
+            value={inputs.meaning}
+            onChange={handleChange}
           />
         </Input>
         <Input>
@@ -83,9 +91,9 @@ const Edit = (props) => {
             type="text"
             name="example"
             id="input-example"
-            defaultValue={clickedCard.example}
-            // placeholder={clickedCard.example}
-            // onChange={handleChange}
+            // defaultValue={clickedCard.example}
+            value={inputs.example}
+            onChange={handleChange}
           />
         </Input>
         <Input>
@@ -94,14 +102,15 @@ const Edit = (props) => {
             type="text"
             name="example_translation"
             id="input-example_translation"
-            defaultValue={clickedCard.example_translation}
-            // placeholder={clickedCard.example_translation}
-            // onChange={handleChange}
+            // defaultValue={clickedCard.example_translation}
+            value={inputs.example_translation}
+            onChange={handleChange}
           />
         </Input>
         <Rectify
           type="submit"
           onClick={() => {
+            dispatch(updateDictionaryFB(inputs));
             history.push("/");
           }}
         >

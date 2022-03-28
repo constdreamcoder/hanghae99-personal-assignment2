@@ -12,40 +12,9 @@ import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { db } from "./firebase";
-import {
-  collection,
-  doc,
-  getDocs,
-  getDoc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
 
 function App() {
   const history = useHistory();
-
-  React.useEffect(async () => {
-    console.log(db);
-    const query = await getDocs(collection(db, "dictionary"));
-    console.log(query);
-    query.forEach((doc) => {
-      console.log(doc.id, doc.data());
-    });
-    // addDoc(collection(db, "dictionary"), {
-    //   word: "procrastinate",
-    //   pinyin: "[proʊ|kræstɪneɪt]",
-    //   meaning: "(해야 할 일을 보통 하기가 싫어서) 미루다[질질 끌다]",
-    //   example: "It's hard to not procrastinate, isn't it?",
-    //   example_translation: "근데 미루지 않기가 힘들죠?",
-    // });
-
-    // const docRef = doc(db, "dictionary", "QIXY3c3s5KRR6tcuZ2F0");
-    // updateDoc(docRef, { word: "라면먹기" });
-
-    // const docRef = doc(db, "dictionary", "QIXY3c3s5KRR6tcuZ2F0");
-    // deleteDoc(docRef);
-  }, []);
 
   return (
     <div className="App">
@@ -68,7 +37,7 @@ function App() {
             <Card />
           </CardSection>
         </Route>
-        <Route path="/edit/:index" exact>
+        <Route path="/edit/:id" exact>
           <Edit />
         </Route>
         <Route path="/add" exact>

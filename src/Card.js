@@ -6,27 +6,44 @@ import styled from "styled-components";
 
 // packages
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  loadDictionaryFB,
+  deleteDictionaryFB,
+} from "./redux/modules/dictionary";
 
 const Card = (props) => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(loadDictionaryFB());
+  }, []);
+
   const history = useHistory();
   const redux_data = useSelector((state) => state.dictionary.list);
 
-  console.log(redux_data);
+  console.log("카드 컴포넌트", redux_data);
 
   return (
     <>
       {redux_data.map(
-        ({ word, pinyin, meaning, example, example_meaning }, idx) => {
+        ({ id, word, pinyin, meaning, example, example_meaning }, idx) => {
           return (
             <CardContainer key={idx}>
               <div>
                 <button
                   onClick={() => {
-                    history.push("/edit/" + idx);
+                    history.push("/edit/" + id);
                   }}
                 >
                   수정
+                </button>
+                <button
+                  onClick={() => {
+                    dispatch(deleteDictionaryFB(id));
+                  }}
+                >
+                  삭제
                 </button>
               </div>
               <div>
