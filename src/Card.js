@@ -3,6 +3,7 @@ import React from "react";
 
 // style
 import styled from "styled-components";
+import "./Card.css";
 
 // packages
 import { useHistory } from "react-router-dom";
@@ -29,31 +30,66 @@ const Card = (props) => {
       {redux_data.map(
         ({ id, word, pinyin, meaning, example, example_translation }, idx) => {
           return (
-            <CardContainer key={idx}>
-              <div>
-                <button
-                  onClick={() => {
-                    history.push("/edit/" + id);
-                  }}
-                >
-                  수정
-                </button>
-                <button
-                  onClick={() => {
-                    dispatch(deleteDictionaryFB(id));
-                  }}
-                >
-                  삭제
-                </button>
+            <div key={idx} className="col">
+              <div className="container">
+                <div className="front">
+                  <div className="inner">
+                    <div>
+                      <h4>{word}</h4>
+                      <span>{pinyin}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="back">
+                  <div className="inner">
+                    <div>
+                      <button
+                        onClick={() => {
+                          history.push("/edit/" + id);
+                        }}
+                      >
+                        수정
+                      </button>
+                      <button
+                        onClick={() => {
+                          dispatch(deleteDictionaryFB(id));
+                        }}
+                      >
+                        삭제
+                      </button>
+                    </div>
+                    <p>{meaning}</p>
+                    <div>{example}</div>
+                    <div>{example_translation}</div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4>{word}</h4>
-                <span>{pinyin}</span>
-              </div>
-              <p>{meaning}</p>
-              <div>{example}</div>
-              <div>{example_translation}</div>
-            </CardContainer>
+            </div>
+            // <CardContainer key={idx}>
+            //   <div>
+            //     <button
+            //       onClick={() => {
+            //         history.push("/edit/" + id);
+            //       }}
+            //     >
+            //       수정
+            //     </button>
+            //     <button
+            //       onClick={() => {
+            //         dispatch(deleteDictionaryFB(id));
+            //       }}
+            //     >
+            //       삭제
+            //     </button>
+            //   </div>
+            //   <div>
+            //     <h4>{word}</h4>
+            //     <span>{pinyin}</span>
+            //   </div>
+            //   <p>{meaning}</p>
+            //   <div>{example}</div>
+            //   <div>{example_translation}</div>
+            // </CardContainer>
           );
         }
       )}

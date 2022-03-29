@@ -4,6 +4,7 @@ import { useState } from "react";
 
 // style
 import styled from "styled-components";
+import "./Form.css";
 
 // packages
 import { useHistory, useParams } from "react-router-dom";
@@ -49,75 +50,148 @@ const Edit = (props) => {
   };
 
   return (
-    <EidtContainer>
-      <EditTitle>단어 수정하기</EditTitle>
-      <form onSubmit={handleSubmit}>
-        <Input>
-          <label htmlFor="input-word">단어</label>
-          <input
-            type="text"
-            name="word"
-            id="input-word"
-            // defaultValue={clickedCard.word}
-            value={inputs.word}
-            onChange={handleChange}
-          />
-        </Input>
-        <Input>
-          <label htmlFor="input-pinyin">병음</label>
-          <input
-            type="text"
-            name="pinyin"
-            id="input-pinyin"
-            // defaultValue={clickedCard.pinyin}
-            value={inputs.pinyin}
-            onChange={handleChange}
-          />
-        </Input>
-        <Input>
-          <label htmlFor="input-meaning">의미</label>
-          <input
-            type="text"
-            name="meaning"
-            id="input-meaning"
-            // defaultValue={clickedCard.meaning}
-            value={inputs.meaning}
-            onChange={handleChange}
-          />
-        </Input>
-        <Input>
-          <label htmlFor="input-example">예문</label>
-          <input
-            type="text"
-            name="example"
-            id="input-example"
-            // defaultValue={clickedCard.example}
-            value={inputs.example}
-            onChange={handleChange}
-          />
-        </Input>
-        <Input>
-          <label htmlFor="input-example-translation">해석</label>
-          <input
-            type="text"
-            name="example_translation"
-            id="input-example_translation"
-            // defaultValue={clickedCard.example_translation}
-            value={inputs.example_translation}
-            onChange={handleChange}
-          />
-        </Input>
-        <Rectify
-          type="submit"
-          onClick={() => {
-            dispatch(updateDictionaryFB(inputs));
-            history.goBack();
-          }}
-        >
-          수정하기
-        </Rectify>
-      </form>
-    </EidtContainer>
+    <div className="shade">
+      <div className="blackboard">
+        {/* <EditTitle>단어 수정하기</EditTitle> */}
+
+        <form className="form" onSubmit={handleSubmit}>
+          <p>
+            <label htmlFor="input-word">단어</label>
+            <input
+              type="text"
+              name="word"
+              id="input-word"
+              // defaultValue={clickedCard.word}
+              value={inputs.word}
+              onChange={handleChange}
+            />
+          </p>
+          <p>
+            <label htmlFor="input-pinyin">병음</label>
+            <input
+              type="text"
+              name="pinyin"
+              id="input-pinyin"
+              // defaultValue={clickedCard.pinyin}
+              value={inputs.pinyin}
+              onChange={handleChange}
+            />
+          </p>
+          <p>
+            <label htmlFor="input-meaning">의미</label>
+            <input
+              type="text"
+              name="meaning"
+              id="input-meaning"
+              // defaultValue={clickedCard.meaning}
+              value={inputs.meaning}
+              onChange={handleChange}
+            />
+          </p>
+          <p>
+            <label htmlFor="input-example">예문</label>
+            <input
+              type="text"
+              name="example"
+              id="input-example"
+              // defaultValue={clickedCard.example}
+              value={inputs.example}
+              onChange={handleChange}
+            />
+          </p>
+          <p>
+            <label htmlFor="input-example-translation">해석</label>
+            <input
+              type="text"
+              name="example_translation"
+              id="input-example_translation"
+              // defaultValue={clickedCard.example_translation}
+              value={inputs.example_translation}
+              onChange={handleChange}
+            />
+          </p>
+          <p>
+            <input
+              type="submit"
+              value="수정하기"
+              onClick={() => {
+                dispatch(updateDictionaryFB(inputs));
+                history.goBack();
+              }}
+            />
+          </p>
+        </form>
+      </div>
+    </div>
+    // <EidtContainer>
+    //   <EditTitle>단어 수정하기</EditTitle>
+    //   <form onSubmit={handleSubmit}>
+    //     <Input>
+    //       <label htmlFor="input-word">단어</label>
+    //       <input
+    //         type="text"
+    //         name="word"
+    //         id="input-word"
+    //         // defaultValue={clickedCard.word}
+    //         value={inputs.word}
+    //         onChange={handleChange}
+    //       />
+    //     </Input>
+    //     <Input>
+    //       <label htmlFor="input-pinyin">병음</label>
+    //       <input
+    //         type="text"
+    //         name="pinyin"
+    //         id="input-pinyin"
+    //         // defaultValue={clickedCard.pinyin}
+    //         value={inputs.pinyin}
+    //         onChange={handleChange}
+    //       />
+    //     </Input>
+    //     <Input>
+    //       <label htmlFor="input-meaning">의미</label>
+    //       <input
+    //         type="text"
+    //         name="meaning"
+    //         id="input-meaning"
+    //         // defaultValue={clickedCard.meaning}
+    //         value={inputs.meaning}
+    //         onChange={handleChange}
+    //       />
+    //     </Input>
+    //     <Input>
+    //       <label htmlFor="input-example">예문</label>
+    //       <input
+    //         type="text"
+    //         name="example"
+    //         id="input-example"
+    //         // defaultValue={clickedCard.example}
+    //         value={inputs.example}
+    //         onChange={handleChange}
+    //       />
+    //     </Input>
+    //     <Input>
+    //       <label htmlFor="input-example-translation">해석</label>
+    //       <input
+    //         type="text"
+    //         name="example_translation"
+    //         id="input-example_translation"
+    //         // defaultValue={clickedCard.example_translation}
+    //         value={inputs.example_translation}
+    //         onChange={handleChange}
+    //       />
+    //     </Input>
+    //     <Rectify
+    //       type="submit"
+    //       onClick={() => {
+    //         dispatch(updateDictionaryFB(inputs));
+    //         history.goBack();
+    //       }}
+    //     >
+    //       수정하기
+    //     </Rectify>
+    //   </form>
+    // </EidtContainer>
   );
 };
 

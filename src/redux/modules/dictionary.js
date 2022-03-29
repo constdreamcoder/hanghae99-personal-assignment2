@@ -16,9 +16,7 @@ const UPDATE = "dictionary/UPDATE";
 const DELETE = "dictionary/DELETE";
 
 const initialState = {
-  list: [
-   
-  ],
+  list: [],
 };
 
 // Action Creators
@@ -51,7 +49,7 @@ export const loadDictionaryFB = () => {
     let dictionary_list = [];
     console.log("로드 미들웨어", dictionary_data);
     dictionary_data.forEach((doc) => {
-      console.log("로드 미들웨어", doc.data());
+      // console.log("로드 미들웨어", doc.data());
       dictionary_list = [...dictionary_list, { id: doc.id, ...doc.data() }];
     });
 

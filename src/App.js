@@ -31,7 +31,7 @@ function App() {
           추가
         </button>
       </Header>
-      <HomeBody>
+      <HomeBody style={{ marginTop: "60px" }}>
         <Route path="/" exact>
           <CardSection>
             <Card />
@@ -77,17 +77,29 @@ const HeaderTitle = styled.h1`
 `;
 
 const HomeBody = styled.div`
-  background-color: yellow;
-  width: 1400px;
-  height: 800px;
-  margin: 60px auto;
+  // background-color: yellow;
+  // width: 1400px;
+  // height: 800px;
+  // margin: 60px auto;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 80rem;
 `;
 
 const CardSection = styled.div`
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: space-around;
+  // gap: 20px;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 `;
 
 export default App;
