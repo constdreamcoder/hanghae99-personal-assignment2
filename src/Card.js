@@ -27,7 +27,7 @@ const Card = (props) => {
   return (
     <>
       {redux_data.map(
-        ({ id, word, pinyin, meaning, example, example_meaning }, idx) => {
+        ({ id, word, pinyin, meaning, example, example_translation }, idx) => {
           return (
             <CardContainer key={idx}>
               <div>
@@ -52,7 +52,7 @@ const Card = (props) => {
               </div>
               <p>{meaning}</p>
               <div>{example}</div>
-              <div>{example_meaning}</div>
+              <div>{example_translation}</div>
             </CardContainer>
           );
         }
