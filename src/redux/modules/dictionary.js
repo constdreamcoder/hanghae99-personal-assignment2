@@ -71,10 +71,10 @@ export const addDictionaryFB = (dictionary) => {
   };
 };
 
-export const updateDictionaryFB = (dictionary) => {
+export const updateDictionaryFB = (dictionary, dictionary_id) => {
   return async function (dispatch) {
     console.log("수정 미들웨어");
-    const docRef = doc(db, "dictionary", dictionary.id);
+    const docRef = doc(db, "dictionary", dictionary_id);
     await updateDoc(docRef, {
       word: dictionary.word,
       pinyin: dictionary.pinyin,

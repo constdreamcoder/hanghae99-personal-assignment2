@@ -11,7 +11,6 @@ import styled from "styled-components";
 // packages
 import { Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { db } from "./firebase";
 
 function App() {
   const history = useHistory();
@@ -38,10 +37,10 @@ function App() {
           </CardSection>
         </Route>
         <Route path="/edit/:id" exact>
-          <Edit />
+          <AddCard add_or_edit={false} />
         </Route>
         <Route path="/add" exact>
-          <AddCard />
+          <AddCard add_or_edit={true} />
         </Route>
       </HomeBody>
     </div>

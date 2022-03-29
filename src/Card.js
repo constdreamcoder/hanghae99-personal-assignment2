@@ -2,7 +2,6 @@
 import React from "react";
 
 // style
-import styled from "styled-components";
 import "./Card.css";
 
 // packages
@@ -65,42 +64,11 @@ const Card = (props) => {
                 </div>
               </div>
             </div>
-            // <CardContainer key={idx}>
-            //   <div>
-            //     <button
-            //       onClick={() => {
-            //         history.push("/edit/" + id);
-            //       }}
-            //     >
-            //       수정
-            //     </button>
-            //     <button
-            //       onClick={() => {
-            //         dispatch(deleteDictionaryFB(id));
-            //       }}
-            //     >
-            //       삭제
-            //     </button>
-            //   </div>
-            //   <div>
-            //     <h4>{word}</h4>
-            //     <span>{pinyin}</span>
-            //   </div>
-            //   <p>{meaning}</p>
-            //   <div>{example}</div>
-            //   <div>{example_translation}</div>
-            // </CardContainer>
           );
         }
       )}
     </>
   );
 };
-
-const CardContainer = styled.article`
-  border: 2px solid black;
-  height: 161px;
-  width: 420px;
-`;
 
 export default Card;

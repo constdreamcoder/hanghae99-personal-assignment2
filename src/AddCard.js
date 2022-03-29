@@ -3,28 +3,37 @@ import React from "react";
 import { useState } from "react";
 
 // style
-import styled from "styled-components";
 import "./Form.css";
 
 // packages
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addDictionaryFB } from "./redux/modules/dictionary";
+import { useHistory, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addDictionaryFB,
+  updateDictionaryFB,
+} from "./redux/modules/dictionary";
 
 const AddCard = (props) => {
+  // props가 true이면 카드 추가, false면 카드 수정
+  const add_or_edit = props.add_or_edit;
   const history = useHistory();
+
+  const id = useParams().id;
+  const redux_data = useSelector((state) => state.dictionary.list);
+  const clickedCard = redux_data.filter((ele) => ele.id === id)[0];
+
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
-    word: "",
-    pinyin: "",
-    meaning: "",
-    example: "",
-    example_translation: "",
+    word: add_or_edit ? "" : clickedCard.word,
+    pinyin: add_or_edit ? "" : clickedCard.pinyin,
+    meaning: add_or_edit ? "" : clickedCard.meaning,
+    example: add_or_edit ? "" : clickedCard.example,
+    example_translation: add_or_edit ? "" : clickedCard.example_translation,
   });
 
   // 비구조 할당을 통해 값 추출
-  const { word, pinyin, meaning, example, example_translation } = inputs;
+  // const { word, pinyin, meaning, example, example_translation } = inputs;
 
   const handleChange = (event) => {
     const { name, value } = event.target; // 태그 요소인 name값과 value 값을 받는다.
@@ -36,7 +45,7 @@ const AddCard = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("추가 컴포넌트", inputs);
+    console.log(add_or_edit ? "추가 컴포넌트" : "수정 컴포넌트", inputs);
   };
 
   return (
@@ -45,7 +54,7 @@ const AddCard = (props) => {
         {/* <EditTitle>단어 추가하기</EditTitle> */}
         <form className="form" onSubmit={handleSubmit}>
           <p>
-            <label htmlFor="input-word">단어</label>
+            <label htmlFor="input-word">단어:</label>
             <input
               type="text"
               name="word"
@@ -55,7 +64,7 @@ const AddCard = (props) => {
             />
           </p>
           <p>
-            <label htmlFor="input-pinyin">병음</label>
+            <label htmlFor="input-pinyin">병음:</label>
             <input
               type="text"
               name="pinyin"
@@ -65,7 +74,7 @@ const AddCard = (props) => {
             />
           </p>
           <p>
-            <label htmlFor="input-meaning">의미</label>
+            <label htmlFor="input-meaning">의미:</label>
             <input
               type="text"
               name="meaning"
@@ -75,7 +84,7 @@ const AddCard = (props) => {
             />
           </p>
           <p>
-            <label htmlFor="input-example">예문</label>
+            <label htmlFor="input-example">예문:</label>
             <input
               type="text"
               name="example"
@@ -85,7 +94,7 @@ const AddCard = (props) => {
             />
           </p>
           <p>
-            <label htmlFor="input-example_translation">해석</label>
+            <label htmlFor="input-example_translation">해석:</label>
             <input
               type="text"
               name="example_translation"
@@ -97,9 +106,11 @@ const AddCard = (props) => {
           <p className="wipeout">
             <input
               type="submit"
-              value="추가하기"
+              value={add_or_edit ? "추가하기" : "수정하기"}
               onClick={() => {
-                dispatch(addDictionaryFB(inputs));
+                add_or_edit
+                  ? dispatch(addDictionaryFB(inputs))
+                  : dispatch(updateDictionaryFB(inputs, clickedCard.id));
                 history.goBack();
               }}
             />
@@ -107,97 +118,7 @@ const AddCard = (props) => {
         </form>
       </div>
     </div>
-    // <EidtContainer>
-    //   <EditTitle>단어 추가하기</EditTitle>
-    //   <form onSubmit={handleSubmit}>
-    //     <Input>
-    //       <label htmlFor="input-word">단어</label>
-    //       <input
-    //         type="text"
-    //         name="word"
-    //         id="input-word"
-    //         value={inputs.word}
-    //         onChange={handleChange}
-    //       />
-    //     </Input>
-    //     <Input>
-    //       <label htmlFor="input-pinyin">병음</label>
-    //       <input
-    //         type="text"
-    //         name="pinyin"
-    //         id="input-pinyin"
-    //         value={inputs.pinyin}
-    //         onChange={handleChange}
-    //       />
-    //     </Input>
-    //     <Input>
-    //       <label htmlFor="input-meaning">의미</label>
-    //       <input
-    //         type="text"
-    //         name="meaning"
-    //         id="input-meaning"
-    //         value={inputs.meaning}
-    //         onChange={handleChange}
-    //       />
-    //     </Input>
-    //     <Input>
-    //       <label htmlFor="input-example">예문</label>
-    //       <input
-    //         type="text"
-    //         name="example"
-    //         id="input-example"
-    //         value={inputs.example}
-    //         onChange={handleChange}
-    //       />
-    //     </Input>
-    //     <Input>
-    //       <label htmlFor="input-example_translation">해석</label>
-    //       <input
-    //         type="text"
-    //         name="example_translation"
-    //         id="input-example_translation"
-    //         value={inputs.example_translation}
-    //         onChange={handleChange}
-    //       />
-    //     </Input>
-    //     <Rectify
-    //       type="submit"
-    //       onClick={() => {
-    //         dispatch(addDictionaryFB(inputs));
-    //         history.goBack();
-    //       }}
-    //     >
-    //       추가하기
-    //     </Rectify>
-    //   </form>
-    // </EidtContainer>
   );
 };
-
-// const EidtContainer = styled.div`
-//   width: 400px;
-//   height: 80vh;
-//   background-color: yellow;
-//   margin: 70px auto 0px auto;
-// `;
-
-// const EditTitle = styled.p`
-//   font-size: 18px;
-//   font-weight: 600;
-//   text-align: center;
-//   margin-top: 20px;
-//   margin-bottom: 20px;
-//   color: rgb(10, 112, 41);
-// `;
-
-// const Input = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   margin-bottom: 20px;
-// `;
-
-// const Rectify = styled.button`
-//   text-align: center;
-// `;
 
 export default AddCard;
