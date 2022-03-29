@@ -111,7 +111,7 @@ const Edit = (props) => {
           type="submit"
           onClick={() => {
             dispatch(updateDictionaryFB(inputs));
-            history.push("/");
+            history.goBack();
           }}
         >
           수정하기

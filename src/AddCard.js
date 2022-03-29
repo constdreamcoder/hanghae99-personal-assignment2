@@ -44,7 +44,7 @@ const AddCard = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(inputs);
+    console.log("추가 컴포넌트", inputs);
   };
 
   return (
@@ -105,7 +105,7 @@ const AddCard = (props) => {
           type="submit"
           onClick={() => {
             dispatch(addDictionaryFB(inputs));
-            history.push("/");
+            history.goBack();
           }}
         >
           추가하기
