@@ -2,7 +2,6 @@ import React from "react";
 
 // Components
 import Card from "./Card";
-import Edit from "./Edit";
 import AddCard from "./AddCard";
 
 // style
@@ -16,7 +15,7 @@ function App() {
     <div className="App">
       <Header>
         <HeadContainer href="/">
-          <HeaderTitle>프랑스어 단어장</HeaderTitle>
+          <HeaderTitle>영어 단어장</HeaderTitle>
         </HeadContainer>
       </Header>
       <HomeBody style={{ marginTop: "60px" }}>

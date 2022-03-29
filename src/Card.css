@@ -88,6 +88,15 @@ h1 {
   backface-visibility: hidden;
   border-radius: 10px;
 }
+
+.back .inner {
+  visibility: hidden;
+}
+
+.container:hover .back .inner {
+  visibility: visible;
+}
+
 .container:hover .front,
 .container:hover .back {
   -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
