@@ -155,7 +155,8 @@ h1 {
   position: relative;
 }
 
-.front .inner p:after {
+.front .inner p:after,
+.back .inner p:after {
   content: "";
   width: 4rem;
   height: 2px;

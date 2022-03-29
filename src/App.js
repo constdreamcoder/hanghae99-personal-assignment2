@@ -10,25 +10,14 @@ import styled from "styled-components";
 
 // packages
 import { Route } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 function App() {
-  const history = useHistory();
-
   return (
     <div className="App">
       <Header>
         <HeadContainer href="/">
           <HeaderTitle>프랑스어 단어장</HeaderTitle>
         </HeadContainer>
-        <button
-          style={{ marginLeft: "20px" }}
-          onClick={() => {
-            history.push("/add");
-          }}
-        >
-          추가
-        </button>
       </Header>
       <HomeBody style={{ marginTop: "60px" }}>
         <Route path="/" exact>

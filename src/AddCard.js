@@ -14,6 +14,7 @@ import {
 } from "./redux/modules/dictionary";
 
 const AddCard = (props) => {
+  console.log(props);
   // props가 true이면 카드 추가, false면 카드 수정
   const add_or_edit = props.add_or_edit;
   const history = useHistory();
@@ -111,7 +112,7 @@ const AddCard = (props) => {
                 add_or_edit
                   ? dispatch(addDictionaryFB(inputs))
                   : dispatch(updateDictionaryFB(inputs, clickedCard.id));
-                history.goBack();
+                history.push("/");
               }}
             />
           </p>
