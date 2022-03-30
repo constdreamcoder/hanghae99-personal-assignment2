@@ -50,6 +50,25 @@ const Form = (props) => {
     console.log(add_or_edit ? "추가 컴포넌트" : "수정 컴포넌트", inputs);
   };
 
+  // 공란 체크하기
+  const checkBlank = (add_or_edit) => {
+    if (
+      inputs.word === "" ||
+      inputs.pinyin === "" ||
+      inputs.meaning === "" ||
+      inputs.example === "" ||
+      inputs.example_translation === ""
+    ) {
+      alert("비어있는 칸이 있어요!! 부디 채워주세용!!");
+      return;
+    } else {
+      add_or_edit
+        ? dispatch(addDictionaryFB(inputs))
+        : dispatch(updateDictionaryFB(inputs, clickedCard.id));
+      history.push("/");
+    }
+  };
+
   return (
     <div className="shade">
       <Blackboard add_or_edit={add_or_edit} className="blackboard">
@@ -119,10 +138,7 @@ const Form = (props) => {
               type="submit"
               value={add_or_edit ? "추가하기" : "수정하기"}
               onClick={() => {
-                add_or_edit
-                  ? dispatch(addDictionaryFB(inputs))
-                  : dispatch(updateDictionaryFB(inputs, clickedCard.id));
-                history.push("/");
+                checkBlank(add_or_edit);
               }}
             />
           </p>
