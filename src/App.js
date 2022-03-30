@@ -2,7 +2,7 @@ import React from "react";
 
 // Components
 import Card from "./Card";
-import AddCard from "./AddCard";
+import Form from "./Form";
 
 // style
 import styled from "styled-components";
@@ -25,10 +25,10 @@ function App() {
           </CardSection>
         </Route>
         <Route path="/edit/:id" exact>
-          <AddCard add_or_edit={false} />
+          <Form add_or_edit={false} />
         </Route>
         <Route path="/add" exact>
-          <AddCard add_or_edit={true} />
+          <Form add_or_edit={true} />
         </Route>
       </HomeBody>
     </div>

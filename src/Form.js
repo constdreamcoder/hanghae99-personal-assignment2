@@ -14,7 +14,7 @@ import {
   updateDictionaryFB,
 } from "./redux/modules/dictionary";
 
-const AddCard = (props) => {
+const Form = (props) => {
   console.log(props);
   // props가 true이면 카드 추가, false면 카드 수정
   const add_or_edit = props.add_or_edit;
@@ -54,7 +54,11 @@ const AddCard = (props) => {
     <div className="shade">
       <Blackboard add_or_edit={add_or_edit} className="blackboard">
         <form className="form" onSubmit={handleSubmit}>
-          <p>
+          <p
+            style={{
+              marginTop: "1.5em",
+            }}
+          >
             <label htmlFor="input-word">단어:</label>
             <input
               type="text"
@@ -104,7 +108,13 @@ const AddCard = (props) => {
               onChange={handleChange}
             />
           </p>
-          <p className="wipeout">
+          <p
+            className="wipeout"
+            style={{
+              textAlign: "center",
+              marginTop: "4em",
+            }}
+          >
             <input
               type="submit"
               value={add_or_edit ? "추가하기" : "수정하기"}
@@ -146,4 +156,4 @@ const Blackboard = styled.div`
     }
   }}
 `;
-export default AddCard;
+export default Form;
