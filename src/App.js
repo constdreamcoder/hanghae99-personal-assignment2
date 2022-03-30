@@ -57,7 +57,7 @@ const HeadContainer = styled.a`
   display: flex;
 `;
 
-const HeaderTitle = styled.h1`
+const HeaderTitle = styled.span`
   color: rgb(10, 112, 41);
   font-size: 30px;
   font-weight: 600;
