@@ -4,6 +4,7 @@ import { useState } from "react";
 
 // style
 import "./Form.css";
+import styled, { css } from "styled-components";
 
 // packages
 import { useHistory, useParams } from "react-router-dom";
@@ -51,8 +52,7 @@ const AddCard = (props) => {
 
   return (
     <div className="shade">
-      <div className="blackboard">
-        {/* <EditTitle>단어 추가하기</EditTitle> */}
+      <Blackboard add_or_edit={add_or_edit} className="blackboard">
         <form className="form" onSubmit={handleSubmit}>
           <p>
             <label htmlFor="input-word">단어:</label>
@@ -117,9 +117,33 @@ const AddCard = (props) => {
             />
           </p>
         </form>
-      </div>
+      </Blackboard>
     </div>
   );
 };
 
+const Blackboard = styled.div`
+  ${(props) => {
+    switch (props.add_or_edit) {
+      case true:
+        return css`
+          &:before {
+            content: "단어 추가하기";
+          }
+        `;
+      case false:
+        return css`
+          &:before {
+            content: "단어 수정하기";
+          }
+        `;
+      default:
+        return css`
+          &:before {
+            content: "아무것도 없음";
+          }
+        `;
+    }
+  }}
+`;
 export default AddCard;

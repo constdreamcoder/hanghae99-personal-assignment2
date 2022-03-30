@@ -71,7 +71,7 @@ body {
       transparent
     );
   border: #2c2c2c solid 2px;
-  content: "단어 추가하기";
+  /* content: "단어 추가하기"; */
   font-family: "Permanent Marker", cursive;
   font-size: 2.2em;
   color: rgba(238, 238, 238, 0.7);

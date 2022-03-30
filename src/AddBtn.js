@@ -1,7 +1,7 @@
 import React from "react";
 
 // style
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import AddTwoToneIcon from "@material-ui/icons/AddTwoTone";
 
 // packages
