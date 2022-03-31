@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Header>
         <HeadContainer href="/">
-          <HeaderTitle>영어 단어장</HeaderTitle>
+          <HeaderTitle>모르는 단어 모음</HeaderTitle>
         </HeadContainer>
       </Header>
       <HomeBody style={{ marginTop: "60px" }}>
