@@ -48,4 +48,4 @@
 
 ### 삭제기능
 
-![삭제기능](https://user-images.githubusercontent.com/95998675/161025146-f616404f-d987-4d95-8a37-d9ec5db4e07f.gif)
+![삭제기능](https://user-images.githubusercontent.com/95998675/161027367-ad77172e-1636-4f3d-b500-3d49a73327bb.gif)
